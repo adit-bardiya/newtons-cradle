@@ -13,26 +13,29 @@ function preload()
 }
 
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(800, 1700);
 
 
 	engine = Engine.create();
 	world = engine.world;
 
-	roof1 = new Roof();
+	var bobDiameter = 40;
 
-	bobObject1 = new paperBall(90,100);
-	bobObject2 = new paperBall(130,100);
-	bobObject3 = new paperBall(170,100);
-	bobObject4 = new paperBall(210,100);
-	bobObject5 = new paperBall(250,100);
+	roofObject = new Roof();
+
+	bobObject1 = new paperBall(90,10);
+	bobObject2 = new paperBall(130,10);
+	bobObject3 = new paperBall(170,10);
+	bobObject4 = new paperBall(210,10);
+	bobObject5 = new paperBall(250,10);
 	
 
-	rope1 = new Rope(bobObject1.body,roof1,0,0);
-	rope2 = new Rope(bobObject2.body,roof1,-40,0);
-	rope3 = new Rope(bobObject3.body,roof1,40,0);
-	rope4 = new Rope(bobObject4.body,roof1,-80,0);
-	rope5 = new Rope(bobObject5.body,roof1,80,0);
+	rope1=new Rope(bobObject1.body,roofObject.body,-bobDiameter*2, 0)
+
+	rope2=new Rope(bobObject2.body,roofObject.body,-bobDiameter*1, 0)
+	rope3=new Rope(bobObject3.body,roofObject.body,bobDiameter*0, 0)
+	rope4=new Rope(bobObject4.body,roofObject.body,bobDiameter*1, 0)
+	rope5=new Rope(bobObject5.body,roofObject.body,bobDiameter*2, 0)
 
 	Engine.run(engine);
   
@@ -48,24 +51,22 @@ function draw() {
   bobObject3.display();
   bobObject4.display();
   bobObject5.display();
+  keyPressed();
 
-  roof1.display();
+  roofObject.display();
 
   rope1.display();
   rope2.display();
   rope3.display();
   rope4.display();
   rope5.display();
-
-  keyPressed();
-  
   drawSprites();
  
 }
 
 function keyPressed(){
 	if(keyDown(UP_ARROW)){
-		Matter.Body.applyForce(bobObject1.body,bobObject1.body.position,{x:-300,y:-300})
+		Matter.Body.applyForce(bobObject1.body,bobObject1.body.position,{x:-5,y:-7})
 	}
 	
 }

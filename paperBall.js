@@ -2,9 +2,9 @@ class paperBall{
     constructor(a,density){
         var options = {
             isStatic:false,
-            restitution:0.2,
-            friction:2.4,
-            density:density
+            restitution:1,
+            friction:0,
+            density:0.8
         }
         this.body = Bodies.circle(a-1,350,20,options);
         this.width = 40;
@@ -14,7 +14,10 @@ class paperBall{
     display(){
         fill("orange");
         var pos = this.body.position;
-        
-        ellipse(pos.x,pos.y,this.width,this.height);
+        push();
+		translate(pos.x, pos.y);
+		ellipseMode(CENTER);
+        ellipse(0,0,this.width,this.height);
+        pop();
     }
 }
